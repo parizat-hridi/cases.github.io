@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Image Zoom on Click Example</title>
+
+    <meta name="author" content="Codeconvey" />
+
+
+    <!--Only for demo purpose - no need to add.-->
+    <style>
+        section {
+            display: inline-block;
+        }
+
+        #myImg {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg01 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg02 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg03 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg04 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg05 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg06 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg07 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg08 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg09 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        #myImg10 {
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+            display: block;
+        }
+
+        .btn-grad {
+            background-image: linear-gradient(to right, #314755 0%, #26a0da 51%, #314755 100%);
+            margin-top: 14px;
+            padding: 10px 28px;
+            text-align: center;
+            font-weight: bold;
+            transition: 0.5s;
+            background-size: 200% auto;
+            color: white;
+            box-shadow: 0 0 20px #eee;
+            border-radius: 20px;
+            display: block;
+        }
+
+        .btn-grad:hover {
+            background-position: right center;
+            /* change the direction of the change here */
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .Scriptcontent {
+            border-right: 1px solid #a7a7a7;
+            border-bottom: 1px solid #a7a7a7;
+            padding-left: 40px;
+            padding-right: 85px;
+            padding-bottom: 50px;
+            margin-left: 35px;
+            margin-top: 70px;
+        }
+
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            padding-top: 10px;
+            /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(255, 255, 255);
+            /* Fallback color */
+            background-color: rgba(255, 255, 255, 0.9);
+            /* Black w/ opacity */
+        }
+
+        /* Modal Content (image) */
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 23%;
+            /* max-width: 75%; */
+        }
+
+        /* Caption of Modal Image */
+        #caption {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            color: #ccc;
+            padding: 10px 0;
+            height: 150px;
+        }
+
+        /* Add Animation */
+        .modal-content,
+        #caption {
+            -webkit-animation-name: zoom;
+            -webkit-animation-duration: 0.6s;
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        .out {
+            animation-name: zoom-out;
+            animation-duration: 0.6s;
+        }
+
+        @-webkit-keyframes zoom {
+            from {
+                -webkit-transform: scale(1)
+            }
+
+            to {
+                -webkit-transform: scale(2)
+            }
+        }
+
+        @keyframes zoom {
+            from {
+                transform: scale(0.4)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        @keyframes zoom-out {
+            from {
+                transform: scale(1)
+            }
+
+            to {
+                transform: scale(0)
+            }
+        }
+
+        /* The Close Button */
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+
+
+        /* 100% Image Width on Smaller Screens */
+        @media only screen and (max-width: 700px) {
+            .modal-content {
+                width: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg" style="width: 130px;background-color: transparent;"
+                        src="https://i.postimg.cc/sDStxdT2/i-Phone-11.jpg" alt="">
+                    <!-- <img id="myImg" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/rsfhDTDD/iphone-11.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 11</button>
+                    </a>
+
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal" class="modal">
+                        <img class="modal-content" id="img01">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg01" style="width: 130px;"
+                        src="https://i.postimg.cc/T3VCMTCr/i-Phone-11-Pro.jpg" alt="">
+                    <!-- <img id="myImg01" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/c1BPqyLy/iphone-11-pro.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 11 Pro</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold; font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal01" class="modal">
+                        <img class="modal-content" id="img02">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg02" style="width: 130px;"
+                        src="https://i.postimg.cc/wMMGgn79/i-Phone-11-Pro-Max.jpg" alt="">
+                    <!-- <img id="myImg02" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/8c4YLW0P/iphone-11-pro-max.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 11 Pro Max</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal02" class="modal">
+                        <img class="modal-content" id="img03">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg03" style="width: 130px;"
+                        src="https://i.postimg.cc/CM2vbPRf/i-Phone-12-mini.jpg" alt="">
+                    <!-- <img id="myImg03" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/HsWRdZrJ/iphone-12-mini.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 12 Mini</button>
+                    </a>
+
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal03" class="modal">
+                        <img class="modal-content" id="img04">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg04" style="width: 130px;"
+                        src="https://i.postimg.cc/VLbKgqtZ/i-Phone-12.jpg" alt="">
+                    <!-- <img id="myImg04" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/MKs4T7B9/iphone-12.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 12</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal04" class="modal">
+                        <img class="modal-content" id="img05">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg05" style="width: 130px;"
+                        src="https://i.postimg.cc/NG2H3ttN/i-Phone-12-Pro.jpg" alt="">
+                    <!-- <img id="myImg05" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/cJ35XPbz/iphone-12-pro.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 12 Pro</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal05" class="modal">
+                        <img class="modal-content" id="img06">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg06" style="width: 130px;"
+                        src="https://i.postimg.cc/25TGy2py/i-Phone-12-Pro-Max.jpg" alt="">
+                    <!-- <img id="myImg06" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/qvzFCNX4/iphone-12-pro-max.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 12 Pro Max</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal06" class="modal">
+                        <img class="modal-content" id="img07">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg07" style="width: 130px;"
+                        src="https://i.postimg.cc/Z5tVMWFb/i-Phone-13-mini.jpg" alt="">
+                    <!-- <img id="myImg07" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/GmV5PbqY/iphone-13-mini.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 13 mini</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal07" class="modal">
+                        <img class="modal-content" id="img08">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg08" style="width: 130px;"
+                        src="https://i.postimg.cc/434MWKsK/i-Phone-13.jpg" alt="">
+                    <!-- <img id="myImg08" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/C5hPM5xy/iphone-13.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 13</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal08" class="modal">
+                        <img class="modal-content" id="img09">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg09" style="width: 130px;"
+                        src="https://i.postimg.cc/GtTxMR4T/i-Phone-13-Pro.jpg" alt="">
+                    <!-- <img id="myImg09" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/cHMkNwZM/iphone-13-pro.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 13 Pro</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal09" class="modal">
+                        <img class="modal-content" id="img10">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section>
+        <div class="rt-container">
+            <div class="col-rt-12">
+                <div class="Scriptcontent">
+                    <!-- Image Zoom HTML -->
+                    <img class="shadow" id="myImg10" style="width: 130px;"
+                        src="https://i.postimg.cc/9z3tKk98/i-Phone-13-Pro-Max.jpg" alt="">
+                    <!-- <img id="myImg10" style="width: 130px;margin-top: 10px;"
+                        src="https://i.postimg.cc/63NbSYsp/iphone-13-pro-max.png" alt=""> -->
+                    <a href="https://www.etsy.com/listing/1269831937/sugar-skull-tough-case-iphone-tough-case"
+                        target="_blank" style="text-decoration: none;">
+                        <button class="btn-grad">iPhone 13 Pro Max</button>
+                    </a>
+                    <p
+                        style="text-align: center; color: #000;font-weight: bold;font-size: 12px;font-family: Arial, Helvetica, sans-serif;">
+                        Click Image to View Closely</p>
+
+
+                    <!-- The Modal -->
+                    <div id="myModal10" class="modal">
+                        <img class="modal-content" id="img11">
+                    </div>
+                    <!-- End Image Zoom HTML -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+
+
+        // Get the modal
+        var modal = document.getElementById('myModal');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg');
+        var modalImg = document.getElementById("img01");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal01');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg01');
+        var modalImg = document.getElementById("img02");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal02');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg02');
+        var modalImg = document.getElementById("img03");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal03');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg03');
+        var modalImg = document.getElementById("img04");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal04');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg04');
+        var modalImg = document.getElementById("img05");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal05');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg05');
+        var modalImg = document.getElementById("img06");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal06');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg06');
+        var modalImg = document.getElementById("img07");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal07');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg07');
+        var modalImg = document.getElementById("img08");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal08');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg08');
+        var modalImg = document.getElementById("img09");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal09');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg09');
+        var modalImg = document.getElementById("img10");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('myModal10');
+
+        // Get the image and insert it inside the modal - use its "alt" text as a caption
+        var img = document.getElementById('myImg10');
+        var modalImg = document.getElementById("img11");
+        var captionText = document.getElementById("caption");
+        img.onclick = function () {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+            captionText.innerHTML = this.alt;
+        }
+
+
+        // When the user clicks on <span> (x), close the modal
+        modal.onclick = function () {
+            img01.className += " out";
+            setTimeout(function () {
+                modal.style.display = "none";
+                img01.className = "modal-content";
+            }, 400);
+
+        }
+
+    </script>
+    <!-- Analytics -->
+
+</body>
+
+</html>
